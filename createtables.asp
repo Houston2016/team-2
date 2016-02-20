@@ -111,9 +111,9 @@ on error resume next
 
 '************ Change the three lines below to your credentials
 
-fdsn="cfgteam2.ddns.net"
-fuid="cfgteam2"
-fpwd="cfgteam2(@)"
+fdsn="gl1329"
+fuid="gl1329"
+fpwd="FRT46pzyF"
 
 '*********** open the user requested user database
 
