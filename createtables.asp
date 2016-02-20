@@ -5,14 +5,41 @@
 
 <body>
 <% '*************************** functions, subs, then main 
-sub buildareaManager (cnnew)
+sub buildProgress (cnnew)
 dim create_string
 on error resume next
-   create_string="CREATE TABLE areaManager ("
-   create_string=create_string +"store_num integer NOT NULL,"
-   create_string=create_string +"store_name varchar(250) NOT NULL,"
-   create_string=create_string +"district varchar(250) NOT NULL,"
-   create_string=create_string +"area_manager varchar(250) NOT NULL)"
+   create_string="CREATE TABLE progress ("
+   create_string=create_string +"sequence integer NOT NULL,"
+   create_string=create_string +"uid varchar(10) NOT NULL,"
+   create_string=create_string +"time_stamp datetime,"
+   create_string=create_string +"rating varchar(1) NOT NULL)"
+   cnnew.execute create_string 
+   if noerrors(cnnew, "Task: Create new areaManager table") then
+         Response.write "<br>4. Created new areaManager table OK"
+   else 
+         Response.write "<br>4. Create new areaManager table task failed *************************<br>"
+end if
+end sub
+
+sub dropProgress (cnnew)
+on error resume next
+   cnnew.execute "DROP TABLE progress", numa
+   if noerrors(cnnew, "Task: drop progress table") then
+      Response.write "<br>3. Dropped old progress table OK"
+   else 
+      Response.write "<br>3. Unable to drop progress table. Task Failed ***********************<br>" 
+   end if
+   buildProgress (cnnew)
+end sub
+
+sub buildUser (cnnew)
+dim create_string
+on error resume next
+   create_string="CREATE TABLE progress ("
+   create_string=create_string +"sequence integer NOT NULL,"
+   create_string=create_string +"uid varchar(10) NOT NULL,"
+   create_string=create_string +"time_stamp datetime,"
+   create_string=create_string +"rating varchar(1) NOT NULL)"
    cnnew.execute create_string 
    if noerrors(cnnew, "Task: Create new areaManager table") then
          Response.write "<br>4. Created new areaManager table OK"
@@ -31,6 +58,7 @@ on error resume next
    end if
    buildareaManager (cnnew)
 end sub
+
 
 Function noerrors (cn , task)
 If Err <> 0 Then
@@ -77,7 +105,7 @@ if noerrors (cnnew, "Task: Opening database") then '******** top test for user d
 
           Response.write "<p><table border="+chr(34)+"1"+chr(34)+">"
           Response.write "<tr><td>Store Number</td><td>Store Name</td><td>District</td><td>Area Manager</td><td></tr>"
-
+     
 
 cnnew.close
 
