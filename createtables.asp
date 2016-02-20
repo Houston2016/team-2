@@ -1,9 +1,6 @@
 <html>
-    <head>
-        <img src="mfrm.jpg" alt="mfrm">
-    </head>
-
 <body>
+<b>test</b>
 <% '*************************** functions, subs, then main 
 sub buildProgress (cnnew)
 dim create_string
@@ -114,9 +111,9 @@ on error resume next
 
 '************ Change the three lines below to your credentials
 
-fdsn="sftp://cfgteam2.ddns.net"
+fdsn="cfgteam2.ddns.net"
 fuid="cfgteam2"
-fpwd="cfgteam2(!)"
+fpwd="cfgteam2(@)"
 
 '*********** open the user requested user database
 
