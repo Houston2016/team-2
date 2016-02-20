@@ -14,10 +14,10 @@ on error resume next
    create_string=create_string +"time_stamp datetime,"
    create_string=create_string +"rating varchar(1) NOT NULL)"
    cnnew.execute create_string 
-   if noerrors(cnnew, "Task: Create new areaManager table") then
-         Response.write "<br>4. Created new areaManager table OK"
+   if noerrors(cnnew, "Task: Create new progress table") then
+         Response.write "<br>4. Created new progress table OK"
    else 
-         Response.write "<br>4. Create new areaManager table task failed *************************<br>"
+         Response.write "<br>4. Create new progress table task failed *************************<br>"
 end if
 end sub
 
@@ -35,28 +35,55 @@ end sub
 sub buildUser (cnnew)
 dim create_string
 on error resume next
-   create_string="CREATE TABLE progress ("
-   create_string=create_string +"sequence integer NOT NULL,"
-   create_string=create_string +"uid varchar(10) NOT NULL,"
-   create_string=create_string +"time_stamp datetime,"
-   create_string=create_string +"rating varchar(1) NOT NULL)"
+   create_string="CREATE TABLE user ("
+   create_string=create_string +"uid integer NOT NULL,"
+   create_string=create_string +"first_name varchar(10) NOT NULL,"
+   create_string=create_string +"last_name datetime"
    cnnew.execute create_string 
-   if noerrors(cnnew, "Task: Create new areaManager table") then
-         Response.write "<br>4. Created new areaManager table OK"
+   if noerrors(cnnew, "Task: Create new user table") then
+         Response.write "<br>4. Created new user table OK"
    else 
-         Response.write "<br>4. Create new areaManager table task failed *************************<br>"
+         Response.write "<br>4. Create new user table task failed *************************<br>"
 end if
 end sub
 
-sub dropareaManager (cnnew)
+sub dropUser (cnnew)
 on error resume next
-   cnnew.execute "DROP TABLE areaManager", numa
-   if noerrors(cnnew, "Task: drop areaManager table") then
-      Response.write "<br>3. Dropped old areaManager table OK"
+   cnnew.execute "DROP TABLE user", numa
+   if noerrors(cnnew, "Task: drop user table") then
+      Response.write "<br>3. Dropped old user table OK"
    else 
-      Response.write "<br>3. Unable to drop areaManager table. Task Failed ***********************<br>" 
+      Response.write "<br>3. Unable to drop user table. Task Failed ***********************<br>" 
    end if
-   buildareaManager (cnnew)
+   buildUser (cnnew)
+end sub
+
+sub buildActivity (cnnew)
+dim create_string
+on error resume next
+   create_string="CREATE TABLE activity ("
+   create_string=create_string +"activity_id integer NOT NULL,"
+   create_string=create_string +"a_name varchar(250) NOT NULL,"
+   create_string=create_string +"age_group varchar(250) NOT NULL,"
+   create_string=create_string +"theme varchar(250) NOT NULL),"
+   create_string=create_string +"theme varchar(250) NOT NULL)"
+   cnnew.execute create_string 
+   if noerrors(cnnew, "Task: Create new activity table") then
+         Response.write "<br>4. Created new progress table OK"
+   else 
+         Response.write "<br>4. Create new activity table task failed *************************<br>"
+end if
+end sub
+
+sub dropActivity (cnnew)
+on error resume next
+   cnnew.execute "DROP TABLE activity", numa
+   if noerrors(cnnew, "Task: drop activity table") then
+      Response.write "<br>3. Dropped old activity table OK"
+   else 
+      Response.write "<br>3. Unable to drop activity table. Task Failed ***********************<br>" 
+   end if
+   buildActivity (cnnew)
 end sub
 
 
@@ -87,9 +114,9 @@ on error resume next
 
 '************ Change the three lines below to your credentials
 
-fdsn="gl1329"
-fuid="gl1329"
-fpwd="FRT46pzyF"
+fdsn="sftp://cfgteam2.ddns.net"
+fuid="cfgteam2"
+fpwd="cfgteam2(!)"
 
 '*********** open the user requested user database
 
@@ -101,10 +128,9 @@ if noerrors (cnnew, "Task: Opening database") then '******** top test for user d
           Response.write  fdns
           Response.write " database OK"
 
-          call dropareaManager(cnnew) '****** drop, then create the areaManager table 
-
-          Response.write "<p><table border="+chr(34)+"1"+chr(34)+">"
-          Response.write "<tr><td>Store Number</td><td>Store Name</td><td>District</td><td>Area Manager</td><td></tr>"
+          call dropProgress(cnnew) '****** drop, then create the areaManager table 
+          call dropActivity(cnnew)
+          call dropUser(cnnew)
      
 
 cnnew.close
