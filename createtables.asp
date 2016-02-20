@@ -33,7 +33,7 @@ end sub
 sub buildUser (cnnew)
 dim create_string
 on error resume next
-   create_string="CREATE TABLE user ("
+   create_string="CREATE TABLE user1 ("
    create_string=create_string +"uid integer NOT NULL,"
    create_string=create_string +"first_name varchar(250) NOT NULL,"
    create_string=create_string +"last_name varchar(250) NOT NULL)"
@@ -47,7 +47,7 @@ end sub
 
 sub dropUser (cnnew)
 on error resume next
-   cnnew.execute "DROP TABLE user", numa
+   cnnew.execute "DROP TABLE user1", numa
    if noerrors(cnnew, "Task: drop user table") then
       Response.write "<br>3. Dropped old user table OK"
    else 
