@@ -34,8 +34,8 @@ dim create_string
 on error resume next
    create_string="CREATE TABLE user ("
    create_string=create_string +"uid integer NOT NULL,"
-   create_string=create_string +"first_name varchar(10) NOT NULL,"
-   create_string=create_string +"last_name datetime"
+   create_string=create_string +"first_name varchar(250) NOT NULL,"
+   create_string=create_string +"last_name varchar(250)"
    cnnew.execute create_string 
    if noerrors(cnnew, "Task: Create new user table") then
          Response.write "<br>4. Created new user table OK"
@@ -62,7 +62,7 @@ on error resume next
    create_string=create_string +"activity_id integer NOT NULL,"
    create_string=create_string +"a_name varchar(250) NOT NULL,"
    create_string=create_string +"age_group varchar(250) NOT NULL,"
-   create_string=create_string +"theme varchar(250) NOT NULL),"
+   create_string=create_string +"theme varchar(250) NOT NULL,"
    create_string=create_string +"theme varchar(250) NOT NULL)"
    cnnew.execute create_string 
    if noerrors(cnnew, "Task: Create new activity table") then
