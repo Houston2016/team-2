@@ -547,7 +547,7 @@ if noerrors (cnnew, "Task: Opening database") then '******** top test for user d
             Insert_String = "INSERT INTO activity (activity_id,a_name,age_group,theme) VALUES ('007131','Lavista Northlake Center','Atlanta-Central','NULL');"
             cnnew.execute Insert_String '****** add the row to the new table
     dim update_string
-    update_string = "UPDATE activity SET theme = 'http://auckland.bauer.uh.edu/students/gl1329/team-2/img/infant.jpp' WHERE age_group = 'Allentown'"
+    update_string = "UPDATE activity SET theme = 'http://assets-s3.usmagazine.com/uploads/assets/articles/82136-new-gerber-baby-is-7-month-old-girl-named-grace/1421876680_grace-gerber-baby-zoom.jpg' WHERE age_group = 'Allentown'"
     cnnew.execute update_string
     response.write "UPDATED"
 cnnew.close
