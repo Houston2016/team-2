@@ -1,7 +1,7 @@
-
 <html>
 <%
-
+sub pass2
+  response.write "<P>Pass 2 tokenvalue="+cstr(tokenvalue)
 
   set cn=Server.CreateObject("ADODB.Connection")
   cn.open "gl1329","gl1329","FRT46pzyF"
@@ -30,7 +30,8 @@
         end if
 cn.close
 
-%>
+end sub
 
-</body>
+    call pass2
+%>
 </html>
